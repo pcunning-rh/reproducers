@@ -84,7 +84,6 @@ new_survey_common:
   - question_name: Region of the New Device
     type: multiplechoice
     default: ""
-    question_description:
     variable: device_region
     max: null
     min: null
