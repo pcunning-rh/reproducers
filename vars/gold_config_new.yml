@@ -89,15 +89,15 @@ new_survey_test:
     required: true
   - question_name: What is your admin username
     variable: username
-    max: "1024"
-    min: "0"
+    max: 1024
+    min: 0
     type: text
     required: true
   - question_name: What is your admin password
     variable: password
     type: password
-    max: "1024"
-    min: "0"
+    max: 1024
+    min: 0
     required: true
 
 # The questions below are just for the production template
