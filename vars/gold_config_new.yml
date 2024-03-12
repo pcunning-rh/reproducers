@@ -85,8 +85,6 @@ new_survey_common:
     type: multiplechoice
     default: ""
     variable: device_region
-    max:
-    min:
     choices:
       - northcentral
       - northeast
