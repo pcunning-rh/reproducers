@@ -104,8 +104,8 @@ new_survey_test:
     question_description:
     min: 0
     choices:
-      - true
-      - false
+      - "true"
+      - "false"
     required: true
   - question_name: What is your admin username
     variable: username

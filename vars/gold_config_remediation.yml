@@ -43,8 +43,8 @@ remediation_survey_test:
     default: ""
     variable: save
     choices:
-      - true
-      - false
+      - "true"
+      - "false"
     required: true
   - question_name: What is your admin username
     variable: username
