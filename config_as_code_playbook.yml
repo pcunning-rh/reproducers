@@ -1,0 +1,35 @@
+---
+- name: Manage the Gold Config templates in AAP
+  hosts: localhost
+  connection: local
+  vars_files:
+    - ../vars/gold_config_remediation.yml
+    - ../vars/gold_config_new.yml
+  tasks:
+    - name: Manage the job templates
+      ansible.controller.job_template:
+        name: "{{ item.configs.name }}"
+        inventory: CiscoDevNet
+        project: PCNetModules
+        execution_environment: default_ee
+        playbook: "{{ item.configs.playbook }}"
+        limit: "{{ item.configs.limit | default(omit) }}"
+        credentials: pc_id_rsa
+        extra_vars: "{{ item.configs.extra_vars | default(omit) }}"
+        survey_enabled: true
+        survey_spec: "{{ item.survey }}"
+        ask_credential_on_launch: true
+        ask_job_type_on_launch: "{{ item.configs.ask_job_type_on_launch | default(omit) }}"
+        ask_limit_on_launch: "{{ item.configs.ask_limit_on_launch | default(omit) }}"
+        ask_variables_on_launch: true
+        ask_verbosity_on_launch: true
+        ask_scm_branch_on_launch: "{{ item.configs.ask_scm_branch_on_launch | default(omit) }}"
+      loop:
+        - configs: "{{ new_test }}"
+          survey: "{{ new_survey_spec_test }}"
+        - configs: "{{ new_production }}"
+          survey: "{{ new_survey_spec_production }}"
+        - configs: "{{ remediation_test }}"
+          survey: "{{ remediation_survey_spec_test }}"
+        - configs: "{{ remediation_production }}"
+          survey: "{{ remediation_survey_spec_production }}"

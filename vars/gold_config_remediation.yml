@@ -1,0 +1,66 @@
+remediation_test:
+  name: "Gold Config Remediation - Test"
+  playbook: banner.yml
+  survey_enabled: true
+  ask_scm_branch_on_launch: true
+  ask_limit_on_launch: true
+  ask_job_type_on_launch: true
+  extra_vars:
+    ansible_command_timeout: 120
+remediation_production:
+  name: "Gold Config Remediation - Production"
+  playbook: banner.yml
+  survey_enabled: true
+  ask_scm_branch_on_launch: false
+  ask_limit_on_launch: true
+  extra_vars:
+    save: true
+    ansible_command_timeout: 120
+# The following questions are for production and test environemnts
+remediation_survey_common:
+  - question_name: What configuration sections do you want to update to match the gold config?
+    question_description: "Link to see the templates is here: "
+    type: multiselect
+    variable: sections
+    choices:
+      - aaa
+      - acl
+      - dns
+      - interface
+      - netconf
+      - ntp
+      - snmp
+      - snmp_user
+      - smart_license
+      - syslog
+      - time
+    required: true
+# The questions below are just for the test template
+remediation_survey_test:
+  - question_name: Do you want to save your configuration?
+    type: multiplechoice
+    variable: save
+    choices:
+      - true
+      - false
+    required: true
+  - question_name: What is your admin username
+    variable: username
+    type: text
+    required: false
+  - question_name: What is your admin password
+    variable: password
+    type: password
+    required: false
+
+# The questions below are just for the production template
+remediation_survey_production: []
+
+remediation_survey_spec_test:
+  name: survey for remediating switches in test
+  description: survey for remediating switches in test
+  spec: "{{ remediation_survey_common + remediation_survey_test }}"
+remediation_survey_spec_production:
+  name: survey for remediating switches in production
+  description: survey for remediating switches in production
+  spec: "{{ remediation_survey_common + remediation_survey_production }}"

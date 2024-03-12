@@ -1,0 +1,101 @@
+---
+new_test:
+  name: "Gold Config New Switch - Test"
+  playbook: banner.yml
+  survey_enabled: true
+  ask_scm_branch_on_launch: true
+  ask_limit_on_launch: true
+  ask_job_type_on_launch: true
+  extra_vars:
+    ansible_command_timeout: 120
+new_production:
+  name: "Gold Config New Switch - Production"
+  playbook: banner.yml
+  survey_enabled: true
+  ask_scm_branch_on_launch: false
+  ask_limit_on_launch: true
+  extra_vars:
+    save: true
+    ansible_command_timeout: 120
+# The following questions are for production and test environemnts
+new_survey_common:
+  - question_name: IP Adress of New Device
+    type: text
+    variable: device_ip
+    required: true
+  - question_name: Site Code of the New Device
+    type: text
+    variable: device_site
+    required: true
+    # choices: "{{ site_codes }}"
+  - question_name: Device Hostname
+    variable: device_hostname
+    type: text
+    required: false
+  # We're planning to remove the below questions and get this info from anible_facts instead
+  - question_name: Device Type
+    type: multiplechoice
+    variable: series
+    choices:
+      - Cisco Catalyst 9200 Series Switches
+      - Cisco Catalyst 9300 Series Switches
+      - Cisco Catalyst 3650 Series Switches
+    required: true
+  - question_name: Device Family
+    type: multiplechoice
+    variable: family
+    choices:
+      - Switches and Hubs
+      - Routers
+    required: true
+    default: Switches and Hubs
+  - question_name: Software Type
+    type: multiplechoice
+    variable: softwareType
+    choices:
+      - IOS-XE
+      - IOS
+      - NX-OS
+    required: true
+  # This quesiton can be removed when the 'region' variable is put in the region group vars
+  - question_name: Region of the New Device
+    type: multiplechoice
+    variable: device_region
+    choices:
+      - northcentral
+      - northeast
+      - oconus
+      - southcentral
+      - southeast
+      - west
+    required: true
+
+# The questions below are just for the test template
+new_survey_test:
+  - question_name: Do you want to save your configuration?
+    type: multiplechoice
+    variable: save
+    choices:
+      - true
+      - false
+    required: true
+  - question_name: What is your admin username
+    variable: username
+    type: text
+    required: true
+  - question_name: What is your admin password
+    variable: password
+    type: password
+    required: true
+
+# The questions below are just for the production template
+new_survey_production: []
+
+new_survey_spec_test:
+  name: survey for new switches in test
+  description: survey for new switches in test
+  spec: "{{ new_survey_common + new_survey_test }}"
+new_survey_spec_production:
+  name: survey for new switches in production
+  description: survey for new switches in production
+  spec: "{{ new_survey_common + new_survey_production }}"
