@@ -35,8 +35,8 @@ new_survey_common:
   # We're planning to remove the below questions and get this info from anible_facts instead
   - question_name: Device Type
     type: multiplechoice
-    max: ""
-    min: ""
+    max:
+    min:
     variable: series
     choices:
       - Cisco Catalyst 9200 Series Switches
@@ -46,8 +46,8 @@ new_survey_common:
   - question_name: Device Family
     type: multiplechoice
     variable: family
-    max: ""
-    min: ""
+    max:
+    min:
     choices:
       - Switches and Hubs
       - Routers
@@ -56,8 +56,8 @@ new_survey_common:
   - question_name: Software Type
     type: multiplechoice
     variable: softwareType
-    max: ""
-    min: ""
+    max:
+    min:
     choices:
       - IOS-XE
       - IOS
@@ -67,8 +67,8 @@ new_survey_common:
   - question_name: Region of the New Device
     type: multiplechoice
     variable: device_region
-    max: ""
-    min: ""
+    max:
+    min:
     choices:
       - northcentral
       - northeast
