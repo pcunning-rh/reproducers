@@ -86,8 +86,8 @@ new_survey_common:
     default: ""
     question_description:
     variable: device_region
-    max: 1024
-    min: 0
+    max: ''
+    min: ''
     choices:
       - northcentral
       - northeast
