@@ -35,6 +35,8 @@ new_survey_common:
   # We're planning to remove the below questions and get this info from anible_facts instead
   - question_name: Device Type
     type: multiplechoice
+    max: ""
+    min: ""
     variable: series
     choices:
       - Cisco Catalyst 9200 Series Switches
@@ -44,6 +46,8 @@ new_survey_common:
   - question_name: Device Family
     type: multiplechoice
     variable: family
+    max: ""
+    min: ""
     choices:
       - Switches and Hubs
       - Routers
@@ -52,6 +56,8 @@ new_survey_common:
   - question_name: Software Type
     type: multiplechoice
     variable: softwareType
+    max: ""
+    min: ""
     choices:
       - IOS-XE
       - IOS
@@ -61,6 +67,8 @@ new_survey_common:
   - question_name: Region of the New Device
     type: multiplechoice
     variable: device_region
+    max: ""
+    min: ""
     choices:
       - northcentral
       - northeast
@@ -81,11 +89,15 @@ new_survey_test:
     required: true
   - question_name: What is your admin username
     variable: username
+    max: "1024"
+    min: "0"
     type: text
     required: true
   - question_name: What is your admin password
     variable: password
     type: password
+    max: "1024"
+    min: "0"
     required: true
 
 # The questions below are just for the production template
