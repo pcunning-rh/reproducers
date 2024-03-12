@@ -21,6 +21,7 @@ remediation_survey_common:
   - question_name: What configuration sections do you want to update to match the gold config?
     question_description: "Link to see the templates is here: "
     type: multiselect
+    default: ""
     variable: sections
     choices:
       - aaa
@@ -39,6 +40,7 @@ remediation_survey_common:
 remediation_survey_test:
   - question_name: Do you want to save your configuration?
     type: multiplechoice
+    default: ""
     variable: save
     choices:
       - true
@@ -46,10 +48,12 @@ remediation_survey_test:
     required: true
   - question_name: What is your admin username
     variable: username
+    default: ""
     type: text
     required: false
   - question_name: What is your admin password
     variable: password
+    default: ""
     type: password
     required: false
 

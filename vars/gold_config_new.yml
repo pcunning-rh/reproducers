@@ -83,6 +83,7 @@ new_survey_common:
   # This quesiton can be removed when the 'region' variable is put in the region group vars
   - question_name: Region of the New Device
     type: multiplechoice
+    default: ""
     variable: device_region
     choices:
       - northcentral
