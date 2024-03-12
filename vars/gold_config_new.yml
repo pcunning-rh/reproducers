@@ -22,6 +22,8 @@ new_survey_common:
   - question_name: IP Adress of New Device
     type: text
     max: 1024
+    default: ""
+    question_description:
     min: 0
     variable: device_ip
     required: true
@@ -30,12 +32,16 @@ new_survey_common:
     max: 1024
     min: 0
     variable: device_site
+    default: ""
+    question_description:
     required: true
     # choices: "{{ site_codes }}"
   - question_name: Device Hostname
     variable: device_hostname
     max: 1024
     min: 0
+    default: ""
+    question_description:
     type: text
     required: false
   # We're planning to remove the below questions and get this info from anible_facts instead
@@ -43,6 +49,8 @@ new_survey_common:
     type: multiplechoice
     max: 1024
     min: 0
+    default: ""
+    question_description:
     variable: series
     choices:
       - Cisco Catalyst 9200 Series Switches
@@ -59,11 +67,14 @@ new_survey_common:
       - Routers
     required: true
     default: Switches and Hubs
+    question_description:
   - question_name: Software Type
     type: multiplechoice
     variable: softwareType
     max: 1024
     min: 0
+    default: ""
+    question_description:
     choices:
       - IOS-XE
       - IOS
@@ -72,6 +83,8 @@ new_survey_common:
   # This quesiton can be removed when the 'region' variable is put in the region group vars
   - question_name: Region of the New Device
     type: multiplechoice
+    default: ""
+    question_description:
     variable: device_region
     max: 1024
     min: 0
@@ -90,6 +103,8 @@ new_survey_test:
     type: multiplechoice
     variable: save
     max: 1024
+    default: ""
+    question_description:
     min: 0
     choices:
       - true
@@ -98,12 +113,16 @@ new_survey_test:
   - question_name: What is your admin username
     variable: username
     max: 1024
+    default: ""
+    question_description:
     min: 0
     type: text
     required: true
   - question_name: What is your admin password
     variable: password
     type: password
+    default: ""
+    question_description:
     max: 1024
     min: 0
     required: true
