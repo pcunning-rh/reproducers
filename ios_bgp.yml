@@ -6,6 +6,7 @@
     neighbor_address: "fc00:100:200:300:3"
     aggregate_network: "fc00:100:200:300::/48"
     network_address: "fc00:100:200:300::/64"
+    description: "Ansible IPv6 Module Test"
   tasks:
 
     - name: Configure BGP IPv6 Address Family
