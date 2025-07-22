@@ -1,0 +1,32 @@
+---
+- name: Test BGP Aggregate
+  hosts: all
+  vars:
+    as_number: 12345
+    neighbor_address: "fc00:100:200:300:3"
+    aggregate_network: "fc00:100:200:300::/48"
+    network_address: "fc00:100:200:300::/64"
+  tasks:
+
+    - name: Configure BGP IPv6 Address Family
+      cisco.ios.ios_bgp_address_family:
+        config:
+          as_number: "{{ as_number }}"
+          address_family:
+            - afi: ipv6
+              aggregate_address:
+                - address: "{{ aggregate_network }}"
+                  summary_only: true
+              neighbors:
+                - neighbor_address: "{{ neighbor_address }}"
+                  description: "{{ description }}"
+                  activate: true
+                  allowas_in: 2
+                  send_community:
+                    both: true
+                  soft_reconfiguration: true
+              networks:
+                - address: "{{ network_address }}"
+              redistribute:
+                - connected:
+                    route_map: "CONNECTED"
